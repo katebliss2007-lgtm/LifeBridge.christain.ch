@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Login</h1>
+    <form action="login.php" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+</body>
+</html>
+
+$hashed_password = '$2y$10$7T5P4R9O1OuK6M5N4A3S2D1F0G8H3J2L1B1C0R';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  if ($username == '@Lifebrigder' && password_verify($password, 1234)) {
+    // Login successful
+    header('Location: admin-dashboard.html');
+    exit;
+  } else {
+    echo 'Invalid username or password';
+  }
+}
